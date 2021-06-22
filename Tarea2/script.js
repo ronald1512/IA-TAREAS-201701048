@@ -46,41 +46,6 @@ const recorrerEstadosDesde =(nodo_inicio)=>{
 	return lista;
 }
 
-const appendStates=(camino)=>{
-	camino.map((value)=>{
-		setTimeout(() => {
-			switch (value) {
-				case 1:
-					document.getElementById("log").innerHTML+= `<br>Vacuum Location: A | A State: Dirty | B State: Dirty`;
-					break
-				case 2:
-					document.getElementById("log").innerHTML+= `<br>Vacuum Location: A | A State: Dirty | B State: Clean`;
-					break;
-				case 3:
-					document.getElementById("log").innerHTML+= `<br>Vacuum Location: A | A State: Clean | B State: Dirty`;
-					break;
-				case 4:
-					document.getElementById("log").innerHTML+= `<br>Vacuum Location: A | A State: Clean | B State: Clean`;
-					break;
-				case 5:
-					document.getElementById("log").innerHTML+= `<br>Vacuum Location: B | A State: Dirty | B State: Dirty`;
-					break;
-				case 6:
-					document.getElementById("log").innerHTML+= `<br>Vacuum Location: B | A State: Dirty | B State: Clean`;
-					break;
-				case 7:
-					document.getElementById("log").innerHTML+= `<br>Vacuum Location: B | A State: Clean | B State: Dirty`;
-					break;
-				case 8:
-					document.getElementById("log").innerHTML+= `<br>Vacuum Location: B | A State: Clean | B State: Clean`;
-					break;
-				default:
-					break;
-			}
-		}, 2000);
-	});
-}
-
 const appendState =(camino,i)=>{
 	if(i>7) return;
 	const value=camino[i];
@@ -114,9 +79,10 @@ const appendState =(camino,i)=>{
 	}
 	setTimeout(() => {
 		appendState(camino,i+1);
-	}, 2000);
+	}, 1000);
 }
 
-const arr=recorrerEstadosDesde(1)
-console.log(arr);
-appendStates(arr);
+const arr=recorrerEstadosDesde(1);
+document.getElementById("original").innerHTML+= "<h3>Mostrando el recorrido desde el estado 1</h3>";
+document.getElementById("original").innerHTML+= JSON.stringify(arr);
+appendState(arr,0);
